@@ -6,6 +6,7 @@ import tech.buildrun.agregadorinvestimentos.controller.service.UserService;
 import tech.buildrun.agregadorinvestimentos.entity.User;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("v1/users")
@@ -31,6 +32,12 @@ public class UserController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping
+    public ResponseEntity<List<User>> listUsers() {
+        var users = userService.listUsers();
+
+        return ResponseEntity.ok(users);
     }
 
 }
