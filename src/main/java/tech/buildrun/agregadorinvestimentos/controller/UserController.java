@@ -2,7 +2,7 @@ package tech.buildrun.agregadorinvestimentos.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tech.buildrun.agregadorinvestimentos.controller.service.UserService;
+import tech.buildrun.agregadorinvestimentos.service.UserService;
 import tech.buildrun.agregadorinvestimentos.entity.User;
 
 import java.net.URI;
@@ -39,5 +39,18 @@ public class UserController {
 
         return ResponseEntity.ok(users);
     }
+
+    @PutMapping("/{userId}")
+    public ResponseEntity<Void> updateUserById(@PathVariable("userId") String userId, @RequestBody UpdateUserDto updateUserDto) {
+        userService.updateUserById(userId, updateUserDto);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteById(@PathVariable("userId") String userId) {
+        userService.deleteById(userId);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
