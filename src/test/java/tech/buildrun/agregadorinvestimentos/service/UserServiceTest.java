@@ -12,8 +12,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.ArgumentMatchers.any;
 
-import tech.buildrun.agregadorinvestimentos.controller.CreateUserDto;
-import tech.buildrun.agregadorinvestimentos.controller.UpdateUserDto;
+import tech.buildrun.agregadorinvestimentos.controller.dto.CreateUserDto;
+import tech.buildrun.agregadorinvestimentos.controller.dto.UpdateUserDto;
 import tech.buildrun.agregadorinvestimentos.entity.User;
 import tech.buildrun.agregadorinvestimentos.repository.UserRepository;
 
