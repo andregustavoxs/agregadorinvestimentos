@@ -2,6 +2,7 @@ package tech.buildrun.agregadorinvestimentos.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tech.buildrun.agregadorinvestimentos.controller.dto.AccountResponseDto;
 import tech.buildrun.agregadorinvestimentos.controller.dto.CreateAccountDto;
 import tech.buildrun.agregadorinvestimentos.controller.dto.CreateUserDto;
 import tech.buildrun.agregadorinvestimentos.controller.dto.UpdateUserDto;
@@ -26,6 +27,7 @@ public class UserController {
         var userId = userService.createUser(createUserDto);
         return ResponseEntity.created(URI.create("/v1/users/" + userId.toString())).build();
     }
+
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable("userId") String userId) {
         var user = userService.getUserById(userId);
@@ -36,6 +38,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @GetMapping
     public ResponseEntity<List<User>> listUsers() {
         var users = userService.listUsers();
@@ -53,6 +56,12 @@ public class UserController {
     public ResponseEntity<Void> updateById(@PathVariable("userId") String userId, @RequestBody CreateAccountDto createAccountDto) {
         userService.createAccount(userId, createAccountDto);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{userId}/accounts")
+    public ResponseEntity<List<AccountResponseDto>> listAccounts(@PathVariable("userId") String userId) {
+        var accounts = userService.listAccounts(userId);
+        return ResponseEntity.ok(accounts);
     }
 
     @DeleteMapping("/{userId}")
